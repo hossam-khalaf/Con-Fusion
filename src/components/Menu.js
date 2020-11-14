@@ -14,6 +14,10 @@ export default class Menu extends Component {
     this.state = {
       selectedDish: null,
     };
+    console.log('Menu compomnet constructor is invoked');
+  }
+  componentDidMount() {
+    console.log('Menu compomnetdidMoumt is invoked');
   }
 
   onDishSelect(dish) {
@@ -25,7 +29,7 @@ export default class Menu extends Component {
         <Card>
           <CardImg width='100%' src={dish.image} alt={dish.name} />
           <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
+            <CardTitle className='title'>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
@@ -37,8 +41,8 @@ export default class Menu extends Component {
 
   render() {
     const menu = this.props.dishes.map((dish) => (
-      <div className='col-12 col-md-5 m-1'>
-        <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
+      <div key={dish.id} className='col-12 col-md-5 m-1'>
+        <Card onClick={() => this.onDishSelect(dish)}>
           <CardImg width='100%' src={dish.image} alt={dish.name} />
           <CardImgOverlay>
             <CardTitle>{dish.name}</CardTitle>
@@ -46,6 +50,7 @@ export default class Menu extends Component {
         </Card>
       </div>
     ));
+    console.log('Menu compomnet render is invoked');
     return (
       <div className='container'>
         <div className='row'>{menu}</div>
